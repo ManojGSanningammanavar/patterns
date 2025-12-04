@@ -60,6 +60,44 @@ public:
             temp = temp->next;
         }
     }
+
+    void pop_front(){
+        if(head == NULL){
+            cout<<"NO LL Exists\n";
+        return;
+    }
+    Node* temp = head;
+    head = head->next;
+    temp->next = NULL;
+    delete temp;
+    }
+
+    void pop_back(){
+        if(head == NULL){
+            cout<<"NO LL Exists\n";
+        return;
+    }
+    Node* temp = head;
+    while(temp->next != tail){
+        temp = temp->next;
+    }
+    temp->next=NULL;
+    delete tail;
+    tail = temp;
+    }
+
+    int search(int key){
+        Node* temp = head;
+        int idx=0;
+        while(temp->next!=NULL){
+            if(temp->data==key){
+                return idx;
+            }
+            temp = temp->next;
+            idx++;
+        }
+        return -1;
+    }
 };
 
 int main(){
@@ -67,7 +105,13 @@ int main(){
     list.insert_bigin(89);
     list.insert_bigin(45);
     list.insert_bigin(29);
-    list.insert_bigin(67);
-    list.push_back(3);
+    list.insert_bigin(78);
+   cout<<"\n";
+    // list.push_back(3);
+    // list.pop_front();
+    // list.pop_back();
     list.print();
+    cout<<"\n";
+    cout<<list.search(29)<<endl;
+    
 }
